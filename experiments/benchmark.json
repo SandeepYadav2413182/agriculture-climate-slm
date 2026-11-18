@@ -1,0 +1,18 @@
+{
+  "model_estimate": {
+    "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+    "quantization": "4bit",
+    "params": 1540000000,
+    "estimated_size_mb": 770.0,
+    "latency_class": "low",
+    "note": "estimates only; not measured on hardware"
+  },
+  "tfidf_measured": {
+    "n_docs": 8,
+    "dim": 4096,
+    "repeats": 5,
+    "ms_per_doc_mean": 0.0198,
+    "ms_per_doc_min": 0.0089,
+    "ms_per_doc_max": 0.0601
+  }
+}

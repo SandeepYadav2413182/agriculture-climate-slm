@@ -1,0 +1,8 @@
+experiment_id,base_model,dataset_version,train_samples,validation_samples,epochs,learning_rate,lora_rank,lora_alpha,training_time_s,gpu_memory_mb,eval_metric,eval_score,notes
+template_example,Qwen/Qwen2.5-1.5B-Instruct,v0.1-sample,0,0,3,0.0002,16,32,0,,levenshtein_mean,TBD,"TEMPLATE - replace after Kaggle GPU runs"
+baseline_retrieval_only,Qwen/Qwen2.5-1.5B-Instruct,v0.1-sample,201,47,3,0.0002,16,32,0.3,,levenshtein_mean,0.574,"CPU run; retriever top-1 passage as answer, no generation, no weather"
+finetuned_no_rag,Qwen/Qwen2.5-1.5B-Instruct,v0.1-sample,201,47,3,0.0002,16,32,,,levenshtein_mean,,SKIPPED - adapter not found; run QLoRA training on Kaggle GPU first
+rag,Qwen/Qwen2.5-1.5B-Instruct,v0.1-sample,201,47,3,0.0002,16,32,0.2,,levenshtein_mean,0.3129,"CPU run; pipeline answer with RAG top_k=5, weather excluded"
+rag_plus_climate,Qwen/Qwen2.5-1.5B-Instruct,v0.1-sample,201,47,3,0.0002,16,32,0.2,,levenshtein_mean,0.213,CPU run; RAG top_k=5 with weather_context included
+nb_baseline_6795,n/a (stdlib multinomial NB),v0.3-6795,5261,0,1,0.0,0,0,1.9,0,accuracy,0.4945,"CPU run; unigram+bigram, 100 topics; test n=1456 (78:22 split)"
+softmax500_6795,"n/a (numpy softmax regression, SGD)",v0.3-6795,5261,0,500,0.2,0,0,180,0,accuracy,0.6277,"CPU run; 500 epochs SGD lr=0.2 w/ decay, unigram+bigram, 100 topics; test n=1456 (78:22 split); macro_f1=0.6369 top3=0.8194"

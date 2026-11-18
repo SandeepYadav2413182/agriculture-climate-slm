@@ -1,0 +1,33 @@
+# =====================================================================
+# agriculture-climate-slm — dependencies
+#
+# The DATA PIPELINE (src/data), TF-IDF retrieval, query classifier, safety
+# validator and evaluation fallbacks run on STDLIB ONLY — no install needed.
+#
+# Everything below is needed only on the Kaggle GPU notebook (training,
+# embeddings, FAISS, demo app) or for optional richer metrics.
+# =====================================================================
+
+# --- training: QLoRA fine-tuning (Kaggle GPU) ---
+torch>=2.2
+transformers>=4.40
+datasets>=2.19
+peft>=0.10
+trl>=0.9
+accelerate>=0.30
+bitsandbytes>=0.43
+
+# --- retrieval: dense embeddings + vector DB (optional; TF-IDF fallback is stdlib) ---
+sentence-transformers>=2.7
+faiss-cpu>=1.8
+
+# --- demo app ---
+gradio>=4.0
+
+# --- optional richer metrics (pure-python fallbacks exist in src/evaluation/metrics.py) ---
+rouge-score>=0.1.2
+nltk>=3.8
+scikit-learn>=1.3
+
+# --- notebooks ---
+ipykernel>=6.0

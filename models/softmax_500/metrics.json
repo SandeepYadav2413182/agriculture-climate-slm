@@ -1,0 +1,10 @@
+{
+  "n_test": 1456,
+  "accuracy": 0.6277,
+  "top3_accuracy": 0.8194,
+  "macro_f1": 0.6369,
+  "per_language_accuracy": {
+    "en": 0.5581,
+    "hi": 0.6845
+  }
+}

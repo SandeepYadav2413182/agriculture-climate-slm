@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Model weights & adapters (large; download / train on Kaggle)
+models/base/*
+models/adapters/*
+models/merged/*
+!models/base/.gitkeep
+!models/adapters/.gitkeep
+!models/merged/.gitkeep
+
+# Built vector indexes (rebuilt by the pipeline)
+data/processed/vector_index/
+
+# Secrets / local env
+.env
+
+# OS
+.DS_Store
+model/baseline_nb.json

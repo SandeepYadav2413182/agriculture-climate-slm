@@ -1,0 +1,66 @@
+# =====================================================================
+# agriculture-climate-slm — SINGLE SOURCE OF TRUTH
+# Every module in src/ must read its parameters from this file via
+# src/data/config_loader.py. Do NOT hard-code hyper-parameters elsewhere.
+# NOTE: keep to the simple YAML subset (2-space indent, # comments,
+# scalars, nested maps, lists of scalars) — the loader is stdlib-only.
+# =====================================================================
+
+project_name: agriculture-climate-slm
+dataset_version: v0.1-sample
+seed: 42
+
+# --- base model -------------------------------------------------------
+model_name: Qwen/Qwen2.5-1.5B-Instruct
+tokenizer_name: Qwen/Qwen2.5-1.5B-Instruct
+max_seq_length: 2048
+
+# --- training (Stage B SFT; Stage A continued pre-training is optional) --
+learning_rate: 0.0002
+batch_size: 4
+gradient_accumulation: 4
+epochs: 500
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
+quantization: 4bit
+use_gradient_checkpointing: true
+stage_a_enabled: false
+
+# --- data pipeline ------------------------------------------------------
+raw_data_path: data/raw/sample_seed.jsonl
+processed_data_path: data/processed/cleaned.jsonl
+train_path: data/train/train.jsonl
+validation_path: data/validation/val.jsonl
+test_path: data/test/test.jsonl
+test_size: 0.22
+val_size: 0.0
+dedup_similarity_threshold: 0.85
+
+# --- retrieval (RAG) ----------------------------------------------------
+embedding_model: sentence-transformers/all-MiniLM-L6-v2
+vector_database: tfidf
+top_k: 5
+index_dir: data/processed/vector_index
+
+# --- climate / weather ---------------------------------------------------
+weather_provider: mock
+open_meteo_enabled: false
+
+# --- inference -----------------------------------------------------------
+max_new_tokens: 256
+temperature: 0.7
+
+# --- multilingual ---------------------------------------------------------
+default_language: en
+supported_languages:
+  - en
+  - hi
+
+# --- safety ---------------------------------------------------------------
+safety_strict: true
+
+# --- artifacts --------------------------------------------------------------
+adapter_dir: models/adapters/agri-climate-qlora
+merged_dir: models/merged/agri-climate-slm
+experiments_csv: experiments/results.csv
