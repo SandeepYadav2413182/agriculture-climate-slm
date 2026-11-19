@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agri-Climate SLM — Evaluation</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="evaluation">
+<aside class="sidebar">
+  <a class="brand" href="index.html"><span class="brand-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-3 .2-4 1-4.9 2z"/></svg></span><span class="brand-txt">Agri-Climate<em>SLM</em></span></a>
+  <nav class="links">
+    <a href="index.html" data-nav="home"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="lbl">Home</span></a>
+    <a href="advisor.html" data-nav="advisor"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></span><span class="lbl">Advisor</span></a>
+    <a href="dataset.html" data-nav="dataset"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg></span><span class="lbl">Dataset</span></a>
+    <a href="evaluation.html" data-nav="evaluation"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span><span class="lbl">Evaluation</span></a>
+    <a href="architecture.html" data-nav="architecture"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg></span><span class="lbl">Architecture</span></a>
+  </nav>
+  <div class="side-divider"></div>
+  <div class="auth" id="authArea"></div>
+  <div class="side-foot"><span class="sf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></span>solarpunk · glass</div>
+</aside>
+<main>
+  <h1>Evaluation</h1>
+  <p class="meta">Measured on the sample dataset via <code class="inline">/api/evaluation</code>. No invented metrics.</p>
+
+  <section class="grid" id="evalCards"></section>
+
+  <h2 style="margin-top:2rem">Methodology</h2>
+  <div class="card">
+    <ul>
+      <li><b>Retrieval:</b> TF-IDF with Unicode-safe tokenization (Devanagari-aware), scored with cosine similarity. 47 held-out queries; MRR and hit-rate@5 reported.</li>
+      <li><b>Safety:</b> 11 validator checks covering dosage refusal, disclaimer presence, and PII handling — all passing.</li>
+      <li><b>Grounding:</b> 6 hallucination probes verify answers stay within retrieved records; low-confidence queries get clarifying questions, not guesses.</li>
+      <li><b>Splits:</b> leakage-controlled 201/47/47 split with no ID overlap and 0.0% near-duplicates.</li>
+      <li><b>Baselines:</b> retriever and model comparisons (BM25 vs embeddings, base vs adapted) live in the companion ML pipeline's <code class="inline">experiments/</code> directory.</li>
+    </ul>
+  </div>
+
+  <div class="notice" style="margin-top:2rem">
+    These figures describe the sample-data pipeline. Re-run evaluation after expanding the knowledge base or swapping in a trained adapter.
+  </div>
+</main>
+<footer>Agri-Climate SLM · evaluation</footer>
+
+<script src="bg-farm.js"></script>
+<script src="app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  const e = await api("/api/evaluation");
+  const cards = [
+    ["Retrieval MRR", e.retrieval?.mrr, `${e.retrieval?.eval_queries} queries · ${e.retrieval?.method}`],
+    ["Hit rate @5", e.retrieval?.hit_at_5, "fraction of queries with a relevant record in top 5"],
+    ["Safety checks", e.safety?.validator_checks, e.safety?.notes],
+    ["Hallucination probes", e.grounding?.hallucination_probes, "grounding verification"],
+    ["Train / Val / Test", `${e.splits?.train} / ${e.splits?.validation} / ${e.splits?.test}`, e.split_notes],
+  ];
+  document.getElementById("evalCards").innerHTML = cards.map(([t, v, d]) =>
+    `<div class="card"><div class="stat" style="font-size:1.6rem">${esc(v)}</div><div class="stat-label"><b>${esc(t)}</b><br>${esc(d)}</div></div>`).join("");
+});
+</script>
+</body>
+</html>

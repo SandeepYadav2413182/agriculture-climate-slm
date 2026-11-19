@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agri-Climate SLM — Advisor</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="advisor">
+<aside class="sidebar">
+  <a class="brand" href="index.html"><span class="brand-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-3 .2-4 1-4.9 2z"/></svg></span><span class="brand-txt">Agri-Climate<em>SLM</em></span></a>
+  <nav class="links">
+    <a href="index.html" data-nav="home"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="lbl">Home</span></a>
+    <a href="advisor.html" data-nav="advisor"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></span><span class="lbl">Advisor</span></a>
+    <a href="dataset.html" data-nav="dataset"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg></span><span class="lbl">Dataset</span></a>
+    <a href="evaluation.html" data-nav="evaluation"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span><span class="lbl">Evaluation</span></a>
+    <a href="architecture.html" data-nav="architecture"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg></span><span class="lbl">Architecture</span></a>
+  </nav>
+  <div class="side-divider"></div>
+  <div class="auth" id="authArea"></div>
+  <div class="side-foot"><span class="sf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></span>solarpunk · glass</div>
+</aside>
+<main>
+  <h1>Crop Advisor</h1>
+  <p class="meta">Ask in English or Hindi. Add crop, stage, and location for sharper answers. Every response is grounded in retrieved records and saved to your history.</p>
+
+  <div class="card">
+    <form id="askForm">
+      <div class="field">
+        <label for="question">Your question</label>
+        <textarea id="question" maxlength="1000" placeholder="e.g. Should I irrigate my wheat field today?"></textarea>
+      </div>
+      <div class="row3">
+        <div class="field"><label for="crop">Crop (optional)</label><input id="crop" maxlength="80" placeholder="wheat"></div>
+        <div class="field"><label for="crop_stage">Growth stage (optional)</label><input id="crop_stage" maxlength="120" placeholder="vegetative"></div>
+        <div class="field"><label for="location">Location (optional)</label><input id="location" maxlength="120" placeholder="Ludhiana, Punjab"></div>
+      </div>
+      <button class="btn" type="submit" id="askBtn">Get advice</button>
+    </form>
+    <div id="err"></div>
+    <div id="result" style="display:none">
+      <div class="answer" id="answerText"></div>
+      <div class="meta" id="answerMeta"></div>
+    </div>
+  </div>
+
+  <h2 style="margin-top:2rem">Your advisory history</h2>
+  <div class="card" id="history"><p class="meta">Loading…</p></div>
+</main>
+<footer>Agri-Climate SLM · retrieval-grounded advisory demo</footer>
+
+<script src="bg-farm.js"></script>
+<script src="app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  if (!requireAuth()) return;
+  loadHistory();
+  document.getElementById("askForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const err = document.getElementById("err");
+    err.innerHTML = "";
+    const btn = document.getElementById("askBtn");
+    btn.disabled = true; btn.textContent = "Thinking…";
+    try {
+      const data = await api("/api/advise", { body: JSON.stringify({
+        question: document.getElementById("question").value,
+        crop: document.getElementById("crop").value,
+        crop_stage: document.getElementById("crop_stage").value,
+        location: document.getElementById("location").value,
+      })});
+      document.getElementById("result").style.display = "block";
+      document.getElementById("answerText").textContent = data.answer;
+      document.getElementById("answerMeta").innerHTML =
+        `<span class="pill">${esc(data.topic)}</span>` +
+        `<span class="pill">confidence: ${esc(data.confidence)}</span>` +
+        `<span class="pill">safety: ${esc(data.safety.level)}</span>` +
+        (data.weather ? `<div class="wx-line"><span class="w-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="M20 12h2"/><path d="m19.07 4.93-1.41 1.41"/><path d="M15.947 12.65a4 4 0 0 0-5.925-4.128"/><path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z"/></svg></span><span>${esc(data.weather.summary)}</span></div>` : "") +
+        (data.sources?.length ? `<div style="margin-top:0.5rem">Sources: ${data.sources.map(s => esc(s.id)).join(", ")}</div>` : "");
+      loadHistory();
+    } catch (ex) {
+      err.innerHTML = `<div class="error">${esc(ex.message)}</div>`;
+    } finally {
+      btn.disabled = false; btn.textContent = "Get advice";
+    }
+  });
+});
+
+async function loadHistory() {
+  const box = document.getElementById("history");
+  try {
+    const { items } = await api("/api/history");
+    if (!items.length) { box.innerHTML = `<p class="meta">No advisories yet — ask your first question above.</p>`; return; }
+    box.innerHTML = items.map(h => `
+      <div class="history-item">
+        <div class="history-q">${esc(h.question)}</div>
+        <div class="meta">${esc(new Date(h.createdAt).toLocaleString())} · <span class="pill">${esc(h.topic)}</span></div>
+        <div style="margin-top:0.4rem">${esc(h.answer.slice(0, 280))}${h.answer.length > 280 ? "…" : ""}</div>
+      </div>`).join("");
+  } catch (ex) {
+    box.innerHTML = `<div class="error">${esc(ex.message)}</div>`;
+  }
+}
+</script>
+</body>
+</html>

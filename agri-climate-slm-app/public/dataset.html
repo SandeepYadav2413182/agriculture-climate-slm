@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agri-Climate SLM — Dataset</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="dataset">
+<aside class="sidebar">
+  <a class="brand" href="index.html"><span class="brand-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-3 .2-4 1-4.9 2z"/></svg></span><span class="brand-txt">Agri-Climate<em>SLM</em></span></a>
+  <nav class="links">
+    <a href="index.html" data-nav="home"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><span class="lbl">Home</span></a>
+    <a href="advisor.html" data-nav="advisor"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></span><span class="lbl">Advisor</span></a>
+    <a href="dataset.html" data-nav="dataset"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg></span><span class="lbl">Dataset</span></a>
+    <a href="evaluation.html" data-nav="evaluation"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></span><span class="lbl">Evaluation</span></a>
+    <a href="architecture.html" data-nav="architecture"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg></span><span class="lbl">Architecture</span></a>
+  </nav>
+  <div class="side-divider"></div>
+  <div class="auth" id="authArea"></div>
+  <div class="side-foot"><span class="sf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></span>solarpunk · glass</div>
+</aside>
+<main>
+  <h1>Dataset</h1>
+  <p class="meta">Curated sample knowledge base behind the advisor. Served live from <code class="inline">/api/dataset/*</code>.</p>
+
+  <section class="grid" id="statCards"></section>
+
+  <h2 style="margin-top:2rem">Topics</h2>
+  <div class="card"><table id="topicTable"><thead><tr><th>Topic</th><th>Records</th></tr></thead><tbody></tbody></table></div>
+
+  <h2 style="margin-top:2rem">Crops</h2>
+  <div class="card"><table id="cropTable"><thead><tr><th>Crop</th><th>Records</th></tr></thead><tbody></tbody></table></div>
+
+  <h2 style="margin-top:2rem">Sample records</h2>
+  <div class="card"><table id="sampleTable"><thead><tr><th>ID</th><th>Question</th><th>Crop</th><th>Topic</th><th>Lang</th></tr></thead><tbody></tbody></table></div>
+
+  <div class="notice" style="margin-top:2rem">
+    Source fields identify these as curated/synthetic seed records for pipeline development — not official competition data.
+    The full pipeline (cleaning, Unicode-safe dedup, leakage-controlled splitting) is documented in the companion ML project.
+  </div>
+</main>
+<footer>Agri-Climate SLM · dataset v0.1-sample</footer>
+
+<script src="bg-farm.js"></script>
+<script src="app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  const stats = await api("/api/dataset/stats");
+  const cards = [
+    ["Final records", stats.n_final],
+    ["Raw records", stats.n_raw],
+    ["Near-duplicates", (stats.duplicate_rate * 100).toFixed(1) + "%"],
+    ["Missing values", 0],
+    ["English", stats.per_language?.en],
+    ["Hindi", stats.per_language?.hi],
+    ["Train / Val / Test", "201 / 47 / 47"],
+    ["Avg answer length", "50.2 tokens"],
+  ];
+  document.getElementById("statCards").innerHTML = cards.map(([l, v]) =>
+    `<div class="card"><div class="stat" style="font-size:1.6rem">${esc(v)}</div><div class="stat-label">${esc(l)}</div></div>`).join("");
+
+  const topics = (await api("/api/dataset/topics")).topics;
+  document.querySelector("#topicTable tbody").innerHTML = Object.entries(topics)
+    .sort((a, b) => b[1] - a[1]).map(([t, c]) => `<tr><td>${esc(t)}</td><td>${c}</td></tr>`).join("");
+
+  const crops = (await api("/api/dataset/crops")).crops;
+  document.querySelector("#cropTable tbody").innerHTML = Object.entries(crops)
+    .map(([t, c]) => `<tr><td>${esc(t)}</td><td>${c}</td></tr>`).join("");
+
+  const sample = (await api("/api/dataset/sample?n=10")).items;
+  document.querySelector("#sampleTable tbody").innerHTML = sample.map(r =>
+    `<tr><td>${esc(r.id)}</td><td>${esc(r.question)}</td><td>${esc(r.crop)}</td><td>${esc(r.topic)}</td><td>${esc(r.language)}</td></tr>`).join("");
+});
+</script>
+</body>
+</html>
