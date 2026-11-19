@@ -1,0 +1,229 @@
+{
+  "dataset_version": "v0.1-sample",
+  "seed": 42,
+  "n_raw": 295,
+  "n_after_clean": 295,
+  "n_dropped_empty_qa": 0,
+  "n_exact_dupes": 0,
+  "n_near_dupes": 0,
+  "duplicate_rate": 0.0,
+  "n_final": 295,
+  "per_language": {
+    "en": 247,
+    "hi": 48
+  },
+  "per_topic": {
+    "decision_support": 20,
+    "crop_management": 13,
+    "soil": 13,
+    "irrigation": 13,
+    "fertilizers": 13,
+    "seeds": 13,
+    "pest_management": 13,
+    "disease_identification": 13,
+    "weed_management": 12,
+    "harvesting": 12,
+    "post_harvest": 13,
+    "crop_rotation": 12,
+    "organic_farming": 12,
+    "temperature_stress": 12,
+    "rainfall": 13,
+    "drought": 13,
+    "flooding": 12,
+    "heat_waves": 13,
+    "frost": 12,
+    "humidity": 12,
+    "climate_change": 12,
+    "extreme_weather": 12,
+    "seasonal_variability": 12
+  },
+  "per_crop_top15": [
+    [
+      "wheat",
+      30
+    ],
+    [
+      "onion",
+      20
+    ],
+    [
+      "rice",
+      19
+    ],
+    [
+      "cotton",
+      19
+    ],
+    [
+      "mustard",
+      18
+    ],
+    [
+      "tomato",
+      15
+    ],
+    [
+      "potato",
+      15
+    ],
+    [
+      "soybean",
+      14
+    ],
+    [
+      "maize",
+      14
+    ],
+    [
+      "sugarcane",
+      14
+    ],
+    [
+      "groundnut",
+      14
+    ],
+    [
+      "pearl millet",
+      13
+    ],
+    [
+      "banana",
+      13
+    ],
+    [
+      "mango",
+      12
+    ],
+    [
+      "sorghum",
+      12
+    ]
+  ],
+  "missing_values": {},
+  "avg_question_tokens": 11.4,
+  "avg_answer_tokens": 50.24,
+  "splits": {
+    "sizes": {
+      "train": 201,
+      "val": 47,
+      "test": 47
+    },
+    "n_moved_by_leakage_guard": 0,
+    "train_path": "/home/hatch/workspace/your_files/agriculture-climate-slm/data/train/train.jsonl",
+    "validation_path": "/home/hatch/workspace/your_files/agriculture-climate-slm/data/validation/val.jsonl",
+    "test_path": "/home/hatch/workspace/your_files/agriculture-climate-slm/data/test/test.jsonl",
+    "distributions": {
+      "train": {
+        "language": {
+          "en": 177,
+          "hi": 24
+        },
+        "topic": {
+          "weed_management": 8,
+          "heat_waves": 9,
+          "seasonal_variability": 8,
+          "flooding": 8,
+          "frost": 8,
+          "temperature_stress": 8,
+          "rainfall": 9,
+          "disease_identification": 9,
+          "decision_support": 14,
+          "irrigation": 9,
+          "post_harvest": 9,
+          "crop_management": 9,
+          "extreme_weather": 8,
+          "seeds": 9,
+          "fertilizers": 9,
+          "soil": 9,
+          "crop_rotation": 8,
+          "humidity": 8,
+          "climate_change": 8,
+          "pest_management": 9,
+          "organic_farming": 8,
+          "harvesting": 8,
+          "drought": 9
+        }
+      },
+      "val": {
+        "language": {
+          "en": 35,
+          "hi": 12
+        },
+        "topic": {
+          "climate_change": 2,
+          "post_harvest": 2,
+          "rainfall": 2,
+          "fertilizers": 2,
+          "temperature_stress": 2,
+          "pest_management": 2,
+          "frost": 2,
+          "seasonal_variability": 2,
+          "crop_rotation": 2,
+          "crop_management": 2,
+          "harvesting": 2,
+          "heat_waves": 2,
+          "extreme_weather": 2,
+          "weed_management": 2,
+          "drought": 2,
+          "irrigation": 2,
+          "humidity": 2,
+          "decision_support": 3,
+          "disease_identification": 2,
+          "flooding": 2,
+          "soil": 2,
+          "seeds": 2,
+          "organic_farming": 2
+        }
+      },
+      "test": {
+        "language": {
+          "en": 35,
+          "hi": 12
+        },
+        "topic": {
+          "climate_change": 2,
+          "decision_support": 3,
+          "crop_rotation": 2,
+          "harvesting": 2,
+          "irrigation": 2,
+          "heat_waves": 2,
+          "seeds": 2,
+          "drought": 2,
+          "crop_management": 2,
+          "post_harvest": 2,
+          "rainfall": 2,
+          "frost": 2,
+          "seasonal_variability": 2,
+          "organic_farming": 2,
+          "disease_identification": 2,
+          "temperature_stress": 2,
+          "extreme_weather": 2,
+          "fertilizers": 2,
+          "flooding": 2,
+          "pest_management": 2,
+          "soil": 2,
+          "humidity": 2,
+          "weed_management": 2
+        }
+      }
+    }
+  },
+  "schema_fields": [
+    "id",
+    "question",
+    "context",
+    "answer",
+    "crop",
+    "crop_stage",
+    "location",
+    "soil_type",
+    "climate_condition",
+    "weather_condition",
+    "language",
+    "topic",
+    "source",
+    "source_type",
+    "confidence",
+    "safety_level"
+  ]
+}
